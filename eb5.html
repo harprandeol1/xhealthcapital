@@ -212,6 +212,55 @@
       z-index: -1;
     }
 
+    /* PROCESS CIRCLE */
+    .process-wrapper {
+      margin: 40px 0 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .process-circle {
+      width: 360px;
+      max-width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      border: 3px solid #111111;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: #fffefd;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+    }
+
+    .process-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 10px;
+    }
+
+    .process-step-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .process-step-list li {
+      margin-bottom: 6px;
+    }
+
+    .process-step-list span {
+      display: inline-block;
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
     /* CONTACT SIDEBAR */
     .contact-card {
       background: var(--green-deep);
@@ -233,12 +282,13 @@
     .contact-sub {
       font-size: 13px;
       opacity: 0.9;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
-    .contact-line {
-      font-size: 13px;
-      margin-bottom: 8px;
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .contact-label {
@@ -248,6 +298,22 @@
       font-size: 11px;
       opacity: 0.8;
       display: block;
+      margin-bottom: 3px;
+    }
+
+    .contact-input,
+    .contact-select {
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 9px 14px;
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    .contact-input:focus,
+    .contact-select:focus {
+      outline: 2px solid var(--pink);
     }
 
     .btn-pill {
@@ -264,17 +330,84 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin-top: 10px;
+      margin-top: 6px;
     }
 
     .btn-pill:hover {
       filter: brightness(1.05);
     }
 
+    .zoom-cta {
+      margin-top: 16px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.25);
+      display: none;
+    }
+
+    .zoom-cta p {
+      font-size: 12px;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+
+    .zoom-cta a {
+      text-decoration: underline;
+    }
+
     .legal-note {
       font-size: 11px;
       color: var(--text-muted);
       margin-top: 12px;
+    }
+
+    /* PROJECT GRID */
+    .projects-section {
+      margin-top: 60px;
+    }
+
+    .projects-title {
+      font-size: 20px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .projects-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 14px 16px 16px;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+      font-size: 13px;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+    }
+
+    .project-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .project-name {
+      font-weight: 600;
     }
 
     /* FOOTER */
@@ -306,7 +439,10 @@
       }
       .contact-card {
         position: static;
-        margin-top: 10px;
+        margin-top: 24px;
+      }
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
       }
     }
 
@@ -316,6 +452,9 @@
       }
       .section {
         padding-block: 90px;
+      }
+      .projects-grid {
+        grid-template-columns: minmax(0,1fr);
       }
     }
   </style>
@@ -348,12 +487,12 @@
       <h1>
         <span class="hero-heading-line">EB-5 VISA</span>
         <span class="hero-heading-line hero-highlight">
-          <span>FOR HEALTHCARE PROJECTS</span>
+          <span>Your pathway to U.S. residency—invest in a business you control and generate real returns.</span>
         </span>
       </h1>
       <p class="hero-subtext">
-        We partner with healthcare operators and global investors to structure EB-5 projects that
-        create jobs, deliver care, and meet program requirements with institutional discipline.
+        We design and build healthcare businesses for EB-5 investors: you own the operating practice,
+        we help you launch, hire, and grow it, so your investment supports your immigration goals and your lifestyle.
       </p>
     </div>
   </section>
@@ -367,104 +506,210 @@
           <div class="eyebrow">Overview</div>
           <h2>What is the EB-5 Visa?</h2>
           <p>
-            The EB-5 Immigrant Investor Program is a U.S. employment-based visa category that
-            provides a path to permanent residency for investors and their immediate family in
-            exchange for making a qualifying investment in a new commercial enterprise that
-            creates jobs in the United States. :contentReference[oaicite:0]{index=0}
+            The EB-5 Immigrant Investor Program allows qualifying investors and their immediate family
+            to obtain U.S. permanent residency by investing in a new commercial enterprise that creates
+            at least 10 full-time jobs for U.S. workers. The minimum total investment amount is set by
+            U.S. law and depends on project location and category.
           </p>
 
           <p>
-            For investments filed under current rules, most investors must place a minimum of
-            <span class="inline-highlight">$1,050,000</span> into a qualifying project, or
-            <span class="inline-highlight">$800,000</span> if the project is located in a
-            Targeted Employment Area (TEA) such as a rural or high-unemployment area, or in
-            certain infrastructure projects. :contentReference[oaicite:1]{index=1}
+            Today, most healthcare EB-5 projects we work on are structured in designated
+            <span class="inline-highlight">Targeted Employment Areas (TEAs)</span>, which currently
+            require a lower statutory minimum investment than non-TEA locations. Exact thresholds can
+            change over time, so we always align each project with the latest USCIS rules.
           </p>
 
-          <div class="eyebrow">Core requirements</div>
-          <h2>Key elements of a qualifying EB-5 investment</h2>
-          <ul>
-            <li>Investment into a <strong>new commercial enterprise</strong> (NCE) formed for ongoing business activity.</li>
-            <li>Investment meets the <strong>minimum capital requirement</strong> based on location and filing date.</li>
-            <li>Investment is “<strong>at risk</strong>” with a chance for both gain and loss.</li>
-            <li>Creation (or preservation) of at least <strong>10 full-time U.S. jobs</strong> for qualifying workers. :contentReference[oaicite:2]{index=2}</li>
-            <li>Compliance with detailed <strong>source-of-funds documentation</strong> and program integrity rules.</li>
-          </ul>
-
           <p>
-            Investors first receive a <strong>conditional green card</strong>. After roughly
-            two years, they must prove that the capital remained invested and that the required
-            jobs were created before conditions can be removed and full permanent residency is
-            granted. :contentReference[oaicite:3]{index=3}
+            Our role is to translate those abstract requirements into a real business you understand
+            and control—so you are not just a passive name in a fund, but the owner of a healthcare
+            company with a clear plan, team, and support.
           </p>
 
-          <div class="eyebrow">Why healthcare</div>
-          <h2>Why healthcare fits the EB-5 program</h2>
-          <p>
-            Healthcare projects are often a strong fit for EB-5 capital because they combine
-            real-world community impact with meaningful job creation:
-          </p>
-          <ul>
-            <li>Clinics, urgent care centers, and ambulatory surgery centers generate
-                <strong>direct clinical and administrative roles</strong>.</li>
-            <li>Ancillary services and integrated platforms, such as in-house labs,
-                imaging, and digital health infrastructure, add further headcount.</li>
-            <li>Many healthcare facilities can be located in <strong>TEAs</strong>, helping
-                investors qualify at the lower investment threshold while serving underserved
-                communities. :contentReference[oaicite:4]{index=4}</li>
-          </ul>
+          <!-- PROCESS CIRCLE -->
+          <div class="process-wrapper">
+            <div class="process-circle">
+              <div class="process-title">EB-5 JOURNEY AT A GLANCE</div>
+              <ul class="process-step-list">
+                <li><span>01.</span> Choose a healthcare project</li>
+                <li><span>02.</span> Document preparation with immigration attorney</li>
+                <li><span>03.</span> Finalize payment plan</li>
+                <li><span>04.</span> Explore loan options (if eligible)</li>
+                <li><span>05.</span> EB-5 project & petition approval by USCIS</li>
+                <li><span>06.</span> Work permit & travel authorization (if filing inside the U.S.)</li>
+                <li><span>07.</span> Receive 2-year conditional green card</li>
+                <li><span>08.</span> Reach 10-employee and investment milestones</li>
+                <li><span>09.</span> Apply for unconditional (10-year) green card</li>
+              </ul>
+            </div>
+          </div>
 
-          <div class="eyebrow">How we help</div>
-          <h2>How X Health Capital works with EB-5 stakeholders</h2>
+          <div class="eyebrow">Healthcare focus</div>
+          <h2>What kinds of medical businesses do we build?</h2>
           <p>
-            We work with operators, regional centers, and investors to bring discipline to
-            healthcare-focused EB-5 projects:
+            We specialize in healthcare and wellness projects where you can understand who your
+            patients are, who your team is, and how the business makes money. Depending on your
+            profile, market, and goals, a project may be designed around:
           </p>
           <ul>
-            <li><strong>Project design:</strong> aligning clinical operations, real estate, and
-                job-creation modeling with EB-5 requirements.</li>
-            <li><strong>Capital stack strategy:</strong> blending EB-5 with senior debt, traditional
-                equity, and non-dilutive sources.</li>
-            <li><strong>Diligence &amp; monitoring:</strong> underwriting operators and providing
-                structured reporting around jobs, milestones, and financial performance.</li>
-            <li><strong>Stakeholder communication:</strong> helping management teams communicate
-                clearly with investors, immigration counsel, and regulators.</li>
+            <li>Primary care and direct primary care clinics</li>
+            <li>Urgent care and walk-in centers</li>
+            <li>Radiology and diagnostic imaging centers</li>
+            <li>Outpatient surgery and procedure centers (ASCs)</li>
+            <li>Specialist medical offices and multi-specialty groups</li>
+            <li>Physical therapy and rehabilitation clinics</li>
+            <li>Mental health and counseling centers</li>
+            <li>Med spa and integrated wellness centers</li>
           </ul>
+          <p>
+            Each project is built as a real operating business in your name (or your entity), not just
+            a paper share in a large pooled fund.
+          </p>
+
+          <div class="eyebrow">Returns & timelines</div>
+          <h2>When can the business start generating returns?</h2>
+          <p>
+            Our healthcare projects are designed with a clear launch and ramp-up plan—site selection,
+            licensing, hiring, marketing, and operations. Typically, our goal is for the business to
+            begin showing operating revenues and a path to positive cash flow within
+            <span class="inline-highlight">12–18 months</span> after launch, depending on project type and market.
+          </p>
+          <p>
+            Every project carries risk and no specific return is guaranteed, but our philosophy is simple:
+            your EB-5 investment should support both your immigration goals <em>and</em> your financial life.
+          </p>
+
+          <div class="eyebrow">Already in the U.S.?</div>
+          <h2>What if I am already living in the United States?</h2>
+          <p>
+            If you are already in the U.S. in another valid status, current rules may allow you to file
+            for an <strong>adjustment of status</strong> at the same time as your EB-5 petition (concurrent filing).
+            With that filing, many investors and their families can apply for:
+          </p>
+          <ul>
+            <li>A multi-year <strong>employment authorization document (EAD)</strong> allowing you to work or run your own business in the U.S.</li>
+            <li><strong>Advance parole</strong>, a travel permit that lets you leave and re-enter the U.S. while your green card case is pending.</li>
+          </ul>
+          <p>
+            Under recent USCIS policy, these work and travel permits are often issued with validity up to
+            five years, but actual timelines depend on your category, country of birth, and processing times.
+            Your immigration attorney will advise you based on your specific situation.
+          </p>
+
+          <div class="eyebrow">Financing & capital</div>
+          <h2>How much of my own capital do I need?</h2>
+          <p>
+            We understand that not every qualified professional or business owner has the full EB-5
+            investment amount available in cash on day one. For eligible investors, we can help arrange
+            <span class="inline-highlight">loans of up to $300,000</span>, depending on your profile, collateral, and credit.
+          </p>
+          <p>
+            In many healthcare projects, that can mean you contribute around <strong>$500,000</strong> of your own
+            capital, with the remainder structured as compliant third-party financing so that the <em>total</em> capital
+            invested into the EB-5 project meets or exceeds the required statutory minimum at the time of filing.
+          </p>
+          <p>
+            All structures are reviewed with experienced EB-5 immigration attorneys to ensure that funds remain
+            “at risk” and properly documented for USCIS purposes.
+          </p>
+
+          <div class="eyebrow">Our philosophy</div>
+          <h2>More than a visa: a business and a life</h2>
+          <p>
+            Our approach is that you are not investing <em>only</em> to obtain a green card. You are also
+            acquiring a healthcare business that can support your family, your income, and your future growth
+            in the U.S. We:
+          </p>
+          <ul>
+            <li>Design and build the medical practice around your skills, language, and long-term goals.</li>
+            <li>Train you and your trusted team on how to operate and grow the practice.</li>
+            <li>Stay involved as collaborators so you are never alone in solving operational challenges.</li>
+          </ul>
+          <p>
+            Over time, many investors choose to expand beyond a single location—adding new service lines,
+            second sites, or parallel wellness businesses using the playbook we build together.
+          </p>
+
+          <!-- PROJECT TYPES -->
+          <div class="projects-section">
+            <div class="projects-title">Explore sample project types</div>
+            <p class="projects-sub">
+              Each project type has its own regulatory, financial, and operational details. Use these
+              examples as starting points for a tailored plan.
+            </p>
+            <div class="projects-grid">
+              <a href="eb5-primary-care.html" class="project-card">
+                <div class="project-label">Project type</div>
+                <div class="project-name">Primary care &amp; DPC clinic</div>
+              </a>
+              <a href="eb5-urgent-care.html" class="project-card">
+                <div class="project-label">Project type</div>
+                <div class="project-name">Urgent care &amp; walk-in center</div>
+              </a>
+              <a href="eb5-radiology.html" class="project-card">
+                <div class="project-label">Project type</div>
+                <div class="project-name">Radiology &amp; imaging center</div>
+              </a>
+              <a href="eb5-asc.html" class="project-card">
+                <div class="project-label">Project type</div>
+                <div class="project-name">Outpatient surgery center (ASC)</div>
+              </a>
+              <a href="eb5-specialist.html" class="project-card">
+                <div class="project-label">Project type</div>
+                <div class="project-name">Specialist / multi-specialty group</div>
+              </a>
+              <a href="eb5-pt-rehab.html" class="project-card">
+                <div class="project-label">Project type</div>
+                <div class="project-name">Physical therapy &amp; rehab clinic</div>
+              </a>
+              <a href="eb5-mental-health.html" class="project-card">
+                <div class="project-label">Project type</div>
+                <div class="project-name">Mental health &amp; counseling center</div>
+              </a>
+              <a href="eb5-medspa-wellness.html" class="project-card">
+                <div class="project-label">Project type</div>
+                <div class="project-name">Med spa &amp; wellness center</div>
+              </a>
+            </div>
+          </div>
 
           <p class="legal-note">
-            Nothing on this page is legal, tax, or immigration advice. EB-5 rules change over
-            time and outcomes depend on individual facts. Investors should consult qualified
-            U.S. immigration counsel and independent financial advisors before making any
-            investment decisions.
+            Nothing on this page is legal, tax, or immigration advice. EB-5 rules change over time and outcomes depend
+            on individual facts. Investors should consult qualified U.S. immigration counsel and independent financial
+            advisors before making any investment decisions.
           </p>
         </div>
 
         <!-- RIGHT: CONTACT CARD -->
         <aside class="contact-card">
-          <div class="contact-title">Talk about an EB-5 project</div>
+          <div class="contact-title">Start your EB-5 conversation</div>
           <p class="contact-sub">
-            Share your healthcare project or investment goals and we’ll explore whether EB-5 is
-            a fit.
+            Share a few details and we’ll follow up with EB-5 options tailored to your background and healthcare goals.
           </p>
 
-          <div class="contact-line">
-            <span class="contact-label">Email</span>
-            <a href="mailto:info@xhealthcapital.com">info@xhealthcapital.com</a>
-          </div>
+          <form id="eb5-contact-form" class="contact-form">
+            <div>
+              <label class="contact-label" for="email">Email</label>
+              <input class="contact-input" id="email" name="email" type="email" required placeholder="you@example.com" />
+            </div>
+            <div>
+              <label class="contact-label" for="phone">Phone</label>
+              <input class="contact-input" id="phone" name="phone" type="tel" required placeholder="+1 555 555 5555" />
+            </div>
+            <div>
+              <label class="contact-label" for="citizenship">Country of citizenship</label>
+              <input class="contact-input" id="citizenship" name="citizenship" type="text" required placeholder="India, UAE, Canada, etc." />
+            </div>
+            <button type="submit" class="btn-pill">Submit &amp; see next steps</button>
+          </form>
 
-          <div class="contact-line">
-            <span class="contact-label">Phone</span>
-            <span>+1 (000) 000-0000</span>
+          <div id="zoom-cta" class="zoom-cta">
+            <p>
+              Thank you. To move faster, you can now book a Zoom consultation to discuss project options and timelines.
+            </p>
+            <a href="https://scheduler.zoom.us/harpran-deol" target="_blank" rel="noopener" class="btn-pill">
+              Book a Zoom appointment
+            </a>
           </div>
-
-          <div class="contact-line">
-            <span class="contact-label">Schedule</span>
-            <a href="https://scheduler.zoom.us/harpran-deol" target="_blank" rel="noopener">Book a call on Zoom</a>
-          </div>
-
-          <a href="https://scheduler.zoom.us/harpran-deol" target="_blank" rel="noopener" class="btn-pill">
-            Speak with an advisor
-          </a>
         </aside>
       </div>
     </div>
@@ -477,5 +722,23 @@
     <span>Privacy</span>
   </footer>
 </div>
+
+<script>
+  // Simple front-end handling: show Zoom CTA after form "submit"
+  document.addEventListener("DOMContentLoaded", function () {
+    var form = document.getElementById("eb5-contact-form");
+    var zoomCta = document.getElementById("zoom-cta");
+
+    if (form && zoomCta) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        // In production, you would send this data to a backend or form service here.
+        zoomCta.style.display = "block";
+        zoomCta.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
