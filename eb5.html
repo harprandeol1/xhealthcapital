@@ -219,61 +219,95 @@
       z-index: -1;
     }
 
-    /* PROCESS CIRCLE */
-    .process-wrapper {
-      margin: 40px 0 40px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .process-circle {
-      width: 360px;
-      max-width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 50%;
-      border: 3px solid #111111;
-      padding: 26px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+    /* NEW EB-5 JOURNEY SECTION */
+    .journey-section {
+      margin: 40px 0 60px;
+      padding: 30px 28px 34px;
+      background: #ffffff;
+      border-radius: var(--card-radius);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.15);
       position: relative;
-      background: #fffefd;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+      overflow: hidden;
     }
 
-    .process-title {
-      font-size: 12px;
+    .journey-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .journey-title {
+      font-size: 18px;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin-bottom: 10px;
+      letter-spacing: 0.16em;
     }
 
-    .process-step-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 12px;
+    .journey-sub {
+      font-size: 13px;
       color: var(--text-muted);
+      max-width: 360px;
     }
 
-    .process-step-list li {
-      margin-bottom: 6px;
+    .journey-steps {
+      margin-top: 10px;
+      position: relative;
+      padding-left: 10px;
+    }
+
+    .journey-steps::before {
+      content: "";
+      position: absolute;
+      left: 25px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #111111;
+      opacity: 0.16;
+    }
+
+    .journey-step {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 18px;
       opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.25s var(--transition-fast), transform 0.25s var(--transition-fast);
+      transform: translateY(16px);
+      transition: opacity 0.3s var(--transition-fast), transform 0.3s var(--transition-fast);
     }
 
-    .process-step-list li.visible {
+    .journey-step.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .process-step-list span {
-      display: inline-block;
+    .journey-index {
+      min-width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #111111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      background: var(--pink-soft);
+    }
+
+    .journey-text-group {
+      flex: 1;
+    }
+
+    .journey-step-title {
+      font-size: 15px;
       font-weight: 600;
-      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+
+    .journey-step-desc {
+      font-size: 13px;
+      color: var(--text-muted);
     }
 
     /* HEALTHCARE BUSINESSES AS BLOCKS */
@@ -657,21 +691,106 @@
             company with a clear plan, team, and support.
           </p>
 
-          <!-- PROCESS CIRCLE -->
-          <div class="process-wrapper">
-            <div class="process-circle">
-              <div class="process-title">EB-5 JOURNEY AT A GLANCE</div>
-              <ul class="process-step-list">
-                <li><span>01.</span> Choose a healthcare project</li>
-                <li><span>02.</span> Document preparation with immigration attorney</li>
-                <li><span>03.</span> Finalize payment plan</li>
-                <li><span>04.</span> Explore loan options (if eligible)</li>
-                <li><span>05.</span> EB-5 project & petition approval by USCIS</li>
-                <li><span>06.</span> Work permit & travel authorization (if filing inside the U.S.)</li>
-                <li><span>07.</span> Receive 2-year conditional green card</li>
-                <li><span>08.</span> Reach 10-employee and investment milestones</li>
-                <li><span>09.</span> Apply for unconditional (10-year) green card</li>
-              </ul>
+          <!-- NEW EB-5 JOURNEY SECTION -->
+          <div class="journey-section" id="eb5-journey">
+            <div class="journey-header">
+              <div class="journey-title">EB-5 JOURNEY AT A GLANCE</div>
+              <div class="journey-sub">
+                Scroll to reveal each step of a typical EB-5 timeline with a healthcare business:
+                from choosing your project through to an unconditional green card.
+              </div>
+            </div>
+            <div class="journey-steps">
+              <div class="journey-step">
+                <div class="journey-index">01</div>
+                <div class="journey-text-group">
+                  <div class="journey-step-title">Choose a healthcare project</div>
+                  <div class="journey-step-desc">
+                    Align on a primary care, urgent care, imaging, surgery, or wellness concept that fits
+                    your skills, market, and capital plan.
+                  </div>
+                </div>
+              </div>
+              <div class="journey-step">
+                <div class="journey-index">02</div>
+                <div class="journey-text-group">
+                  <div class="journey-step-title">Document preparation with attorney</div>
+                  <div class="journey-step-desc">
+                    Work with your immigration lawyer to structure the EB-5 petition, source-of-funds
+                    documentation, and project documents.
+                  </div>
+                </div>
+              </div>
+              <div class="journey-step">
+                <div class="journey-index">03</div>
+                <div class="journey-text-group">
+                  <div class="journey-step-title">Finalize payment plan</div>
+                  <div class="journey-step-desc">
+                    Confirm how and when your capital will be contributed into the EB-5 project, including
+                    any phased or milestone-based funding.
+                  </div>
+                </div>
+              </div>
+              <div class="journey-step">
+                <div class="journey-index">04</div>
+                <div class="journey-text-group">
+                  <div class="journey-step-title">Explore loan options</div>
+                  <div class="journey-step-desc">
+                    For qualified investors, evaluate loan options of up to $300,000 so that your own
+                    capital plus financing meets EB-5 thresholds.
+                  </div>
+                </div>
+              </div>
+              <div class="journey-step">
+                <div class="journey-index">05</div>
+                <div class="journey-text-group">
+                  <div class="journey-step-title">File EB-5 petition & project approval</div>
+                  <div class="journey-step-desc">
+                    Your attorney files the EB-5 petition with USCIS. The healthcare project and job
+                    creation plan are reviewed under current EB-5 rules.
+                  </div>
+                </div>
+              </div>
+              <div class="journey-step">
+                <div class="journey-index">06</div>
+                <div class="journey-text-group">
+                  <div class="journey-step-title">Work & travel authorization (if in the U.S.)</div>
+                  <div class="journey-step-desc">
+                    If you qualify to adjust status from inside the U.S., you may receive multi-year
+                    work authorization and advance parole while the case is pending.
+                  </div>
+                </div>
+              </div>
+              <div class="journey-step">
+                <div class="journey-index">07</div>
+                <div class="journey-text-group">
+                  <div class="journey-step-title">2-year conditional green card</div>
+                  <div class="journey-step-desc">
+                    Once your petition is approved and a visa is available, you and eligible family
+                    members receive a conditional permanent resident card.
+                  </div>
+                </div>
+              </div>
+              <div class="journey-step">
+                <div class="journey-index">08</div>
+                <div class="journey-text-group">
+                  <div class="journey-step-title">Hit job creation & investment milestones</div>
+                  <div class="journey-step-desc">
+                    Your medical business grows, hiring at least 10 qualifying U.S. employees and
+                    maintaining your capital at risk in the enterprise.
+                  </div>
+                </div>
+              </div>
+              <div class="journey-step">
+                <div class="journey-index">09</div>
+                <div class="journey-text-group">
+                  <div class="journey-step-title">Unconditional green card</div>
+                  <div class="journey-step-desc">
+                    Your attorney files to remove conditions. With approval, you and your family become
+                    full permanent residents with a 10-year green card.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -917,38 +1036,48 @@
 </div>
 
 <script>
-  // EB-5 journey: reveal one step per mouse scroll while the circle is in view
   document.addEventListener("DOMContentLoaded", function () {
-    const steps = Array.from(document.querySelectorAll(".process-step-list li"));
-    const processWrapper = document.querySelector(".process-wrapper");
+    const journeySection = document.getElementById("eb5-journey");
+    const journeySteps = Array.from(document.querySelectorAll(".journey-step"));
     const form = document.getElementById("eb5-contact-form");
     const zoomCta = document.getElementById("zoom-cta");
 
-    let currentStepIndex = 0;
+    let currentStepIndex = -1;
 
-    function showStep(index) {
-      if (index >= 0 && index < steps.length) {
-        steps[index].classList.add("visible");
-      }
+    function isJourneyInView() {
+      if (!journeySection) return false;
+      const rect = journeySection.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom > 0;
     }
 
-    // Show the first step initially
-    if (steps.length > 0) {
-      showStep(0);
-      currentStepIndex = 0;
-    }
-
-    window.addEventListener("wheel", function (e) {
-      if (!processWrapper) return;
-      const rect = processWrapper.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight && rect.bottom > 0;
-      if (!inView) return;
-
-      if (e.deltaY > 0 && currentStepIndex < steps.length - 1) {
+    function showNextStep() {
+      if (currentStepIndex < journeySteps.length - 1) {
         currentStepIndex++;
-        showStep(currentStepIndex);
+        journeySteps[currentStepIndex].classList.add("visible");
       }
-    }, { passive: true });
+    }
+
+    // Reveal first step as soon as section first comes into view
+    function initialRevealOnScroll() {
+      if (currentStepIndex === -1 && isJourneyInView()) {
+        showNextStep();
+        window.removeEventListener("scroll", initialRevealOnScroll);
+      }
+    }
+
+    window.addEventListener("scroll", initialRevealOnScroll, { passive: true });
+
+    // Reveal one new step per scroll down while journey section is in view
+    window.addEventListener(
+      "wheel",
+      function (e) {
+        if (!isJourneyInView()) return;
+        if (e.deltaY > 0) {
+          showNextStep();
+        }
+      },
+      { passive: true }
+    );
 
     // Simple front-end handling: show Zoom CTA after form "submit"
     if (form && zoomCta) {
