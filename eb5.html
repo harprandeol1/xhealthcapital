@@ -218,7 +218,7 @@
       z-index: -1;
     }
 
-    /* EB-5 JOURNEY SECTION */
+    /* EB-5 JOURNEY SECTION – STATIC TIMELINE WITH ANIMATION */
     .journey-section {
       margin: 40px 0 60px;
       padding: 30px 28px 34px;
@@ -252,41 +252,59 @@
     .journey-steps {
       margin-top: 10px;
       position: relative;
-      padding-left: 10px;
+      padding: 10px 0 0;
     }
 
     .journey-steps::before {
       content: "";
       position: absolute;
-      left: 25px;
+      left: 50%;
       top: 0;
       bottom: 0;
       width: 2px;
+      transform: translateX(-50%);
       background: #111111;
-      opacity: 0.16;
+      opacity: 0.18;
     }
 
     .journey-step {
-      display: flex;
-      gap: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 40px minmax(0, 1fr);
+      column-gap: 18px;
       align-items: flex-start;
-      margin-bottom: 18px;
-      opacity: 0.2;
-      transform: translateY(10px);
-      filter: blur(1px);
+      margin-bottom: 26px;
+      opacity: 0;
+      transform: translateY(24px);
       transition:
-        opacity 0.25s var(--transition-fast),
-        transform 0.25s var(--transition-fast),
-        filter 0.25s var(--transition-fast);
+        opacity 0.35s var(--transition-fast),
+        transform 0.35s var(--transition-fast);
     }
 
-    .journey-step.active {
+    .journey-step.visible {
       opacity: 1;
       transform: translateY(0);
-      filter: none;
+    }
+
+    .journey-text-group {
+      font-size: 13px;
+    }
+
+    /* odd steps: text on the left */
+    .journey-step:nth-child(odd) .journey-text-group {
+      grid-column: 1;
+      text-align: left;
+    }
+
+    /* even steps: text on the right */
+    .journey-step:nth-child(even) .journey-text-group {
+      grid-column: 3;
+      text-align: left;
     }
 
     .journey-index {
+      grid-column: 2;
+      justify-self: center;
+      align-self: flex-start;
       min-width: 42px;
       height: 42px;
       border-radius: 50%;
@@ -297,10 +315,7 @@
       font-size: 13px;
       font-weight: 700;
       background: var(--pink-soft);
-    }
-
-    .journey-text-group {
-      flex: 1;
+      z-index: 1;
     }
 
     .journey-step-title {
@@ -621,6 +636,20 @@
       .projects-grid .project-card {
         transform: translateY(0) !important;
       }
+      .journey-steps::before {
+        left: 12px;
+        transform: none;
+      }
+      .journey-step {
+        grid-template-columns: 40px minmax(0,1fr);
+        column-gap: 12px;
+      }
+      .journey-text-group {
+        grid-column: 2 !important;
+      }
+      .journey-index {
+        grid-column: 1;
+      }
     }
 
     @media (max-width: 640px) {
@@ -700,13 +729,12 @@
             <div class="journey-header">
               <div class="journey-title">EB-5 JOURNEY AT A GLANCE</div>
               <div class="journey-sub">
-                Scroll through each step of a typical EB-5 timeline with a healthcare business:
-                from choosing your project through to an unconditional green card.
+                A high-level timeline of how your investment becomes a healthcare business and a path
+                to permanent residency in the United States.
               </div>
             </div>
             <div class="journey-steps">
               <div class="journey-step">
-                <div class="journey-index">01</div>
                 <div class="journey-text-group">
                   <div class="journey-step-title">Choose a healthcare project</div>
                   <div class="journey-step-desc">
@@ -714,9 +742,9 @@
                     your skills, market, and capital plan.
                   </div>
                 </div>
+                <div class="journey-index">01</div>
               </div>
               <div class="journey-step">
-                <div class="journey-index">02</div>
                 <div class="journey-text-group">
                   <div class="journey-step-title">Document preparation with attorney</div>
                   <div class="journey-step-desc">
@@ -724,9 +752,9 @@
                     documentation, and project documents.
                   </div>
                 </div>
+                <div class="journey-index">02</div>
               </div>
               <div class="journey-step">
-                <div class="journey-index">03</div>
                 <div class="journey-text-group">
                   <div class="journey-step-title">Finalize payment plan</div>
                   <div class="journey-step-desc">
@@ -734,9 +762,9 @@
                     any phased or milestone-based funding.
                   </div>
                 </div>
+                <div class="journey-index">03</div>
               </div>
               <div class="journey-step">
-                <div class="journey-index">04</div>
                 <div class="journey-text-group">
                   <div class="journey-step-title">Explore loan options</div>
                   <div class="journey-step-desc">
@@ -744,9 +772,9 @@
                     capital plus financing meets EB-5 thresholds.
                   </div>
                 </div>
+                <div class="journey-index">04</div>
               </div>
               <div class="journey-step">
-                <div class="journey-index">05</div>
                 <div class="journey-text-group">
                   <div class="journey-step-title">File EB-5 petition & project approval</div>
                   <div class="journey-step-desc">
@@ -754,9 +782,9 @@
                     creation plan are reviewed under current EB-5 rules.
                   </div>
                 </div>
+                <div class="journey-index">05</div>
               </div>
               <div class="journey-step">
-                <div class="journey-index">06</div>
                 <div class="journey-text-group">
                   <div class="journey-step-title">Work & travel authorization (if in the U.S.)</div>
                   <div class="journey-step-desc">
@@ -764,9 +792,9 @@
                     work authorization and advance parole while the case is pending.
                   </div>
                 </div>
+                <div class="journey-index">06</div>
               </div>
               <div class="journey-step">
-                <div class="journey-index">07</div>
                 <div class="journey-text-group">
                   <div class="journey-step-title">2-year conditional green card</div>
                   <div class="journey-step-desc">
@@ -774,9 +802,9 @@
                     members receive a conditional permanent resident card.
                   </div>
                 </div>
+                <div class="journey-index">07</div>
               </div>
               <div class="journey-step">
-                <div class="journey-index">08</div>
                 <div class="journey-text-group">
                   <div class="journey-step-title">Hit job creation & investment milestones</div>
                   <div class="journey-step-desc">
@@ -784,9 +812,9 @@
                     maintaining your capital at risk in the enterprise.
                   </div>
                 </div>
+                <div class="journey-index">08</div>
               </div>
               <div class="journey-step">
-                <div class="journey-index">09</div>
                 <div class="journey-text-group">
                   <div class="journey-step-title">Unconditional green card</div>
                   <div class="journey-step-desc">
@@ -794,6 +822,7 @@
                     full permanent residents with a 10-year green card.
                   </div>
                 </div>
+                <div class="journey-index">09</div>
               </div>
             </div>
           </div>
@@ -1041,45 +1070,29 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const journeySection = document.getElementById("eb5-journey");
-    const journeySteps = Array.from(document.querySelectorAll(".journey-step"));
+    const journeySteps = document.querySelectorAll(".journey-step");
     const form = document.getElementById("eb5-contact-form");
     const zoomCta = document.getElementById("zoom-cta");
 
-    function updateJourneyActiveStep() {
-      if (!journeySection || journeySteps.length === 0) return;
+    // Animate steps in as they scroll into view (desktop + mobile)
+    if ("IntersectionObserver" in window && journeySteps.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target); // animate once
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
 
-      const rect = journeySection.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-
-      // If the whole block is completely off-screen, do nothing
-      if (rect.bottom < 0 || rect.top > viewportHeight) return;
-
-      const sectionHeight = rect.height || (rect.bottom - rect.top);
-      const sectionTopInViewport = rect.top;
-      const centerOfViewport = viewportHeight / 2;
-
-      // Position of viewport center relative to top of the journey section
-      const relativeCenter = centerOfViewport - sectionTopInViewport;
-      const progressRaw = relativeCenter / sectionHeight;
-
-      // Clamp between 0–1 and map to step index
-      const progress = Math.max(0, Math.min(1, progressRaw));
-      let index = Math.floor(progress * journeySteps.length);
-
-      if (index < 0) index = 0;
-      if (index > journeySteps.length - 1) index = journeySteps.length - 1;
-
-      journeySteps.forEach((step, i) => {
-        step.classList.toggle("active", i === index);
-      });
+      journeySteps.forEach((step) => observer.observe(step));
+    } else {
+      // Fallback: just show them all
+      journeySteps.forEach((step) => step.classList.add("visible"));
     }
-
-    // Initial call in case the section is already in view
-    updateJourneyActiveStep();
-
-    window.addEventListener("scroll", updateJourneyActiveStep, { passive: true });
-    window.addEventListener("resize", updateJourneyActiveStep);
 
     // Simple front-end handling: show Zoom CTA after form "submit"
     if (form && zoomCta) {
