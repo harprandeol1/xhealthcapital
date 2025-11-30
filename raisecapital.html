@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Raise Capital – X Health Capital</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-deep: #004737;
+      --green-mid: #0a5b43;
+      --cream: #fff8ee;
+      --pink: #ff7ecb;
+      --pink-soft: #ffd5f0;
+      --text-dark: #222222;
+      --text-muted: #606060;
+      --card-radius: 26px;
+      --transition-fast: 0.2s ease-out;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .page { min-height: 100vh; background: var(--cream); }
+
+    /* NAVBAR */
+    .nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 1180px;
+      width: 100%;
+      z-index: 50;
+      padding: 0 20px;
+    }
+
+    .nav-inner {
+      background: var(--green-deep);
+      border-radius: 999px;
+      padding: 16px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #ffffff;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    .nav-group {
+      display: flex;
+      gap: 24px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-link {
+      opacity: 0.85;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--pink);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--green-deep);
+      min-height: 60vh;
+      padding: 120px 20px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      color: #ffffff;
+      text-align: left;
+    }
+
+    .hero-inner {
+      max-width: 980px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-left h1 {
+      font-size: clamp(38px, 5.5vw, 52px);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+
+    .hero-kicker {
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 8px;
+    }
+
+    .hero-highlight {
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-highlight::before {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      left: -6px;
+      right: -6px;
+      background: var(--pink);
+      z-index: -1;
+    }
+
+    .hero-highlight span { color: #431010; }
+
+    .hero-subtext {
+      font-size: 14px;
+      opacity: 0.95;
+      max-width: 520px;
+    }
+
+    .hero-right {
+      text-align: left;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .hero-right p {
+      margin-bottom: 10px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.35);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 10px;
+    }
+
+    /* MAIN SECTION */
+    .section {
+      padding: 120px 20px;
+    }
+
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 22px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .inline-highlight {
+      display: inline-block;
+      position: relative;
+      padding: 0 4px;
+    }
+
+    .inline-highlight::before {
+      content: "";
+      position: absolute;
+      inset: 35%;
+      background: var(--pink-soft);
+      z-index: -1;
+    }
+
+    /* INVESTMENT THESIS BLOCK */
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: 26px;
+      margin-top: 18px;
+      margin-bottom: 50px;
+    }
+
+    .thesis-card {
+      background: #ffffff;
+      border-radius: var(--card-radius);
+      padding: 20px 22px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.13);
+      font-size: 13px;
+    }
+
+    .thesis-card ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .thesis-card li {
+      margin-bottom: 6px;
+    }
+
+    .thesis-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 6px;
+      color: var(--text-muted);
+    }
+
+    /* FUNDED PROJECTS – horizontal blocks moving left to right */
+    .projects-strip-wrapper {
+      margin-top: 18px;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .projects-strip {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .projects-strip::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .projects-strip::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.18);
+      border-radius: 999px;
+    }
+
+    .project-pill {
+      min-width: 260px;
+      max-width: 280px;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 16px 16px 18px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.16);
+      font-size: 13px;
+      position: relative;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .project-pill::before {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--pink-soft);
+      opacity: 0.6;
+      top: -40px;
+      right: -30px;
+    }
+
+    .project-location {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-name {
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-amount {
+      font-size: 13px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-pill:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 55px rgba(0,0,0,0.22);
+    }
+
+    .projects-strip .project-pill:nth-child(2) {
+      transform: translateY(10px);
+    }
+    .projects-strip .project-pill:nth-child(3) {
+      transform: translateY(20px);
+    }
+    .projects-strip .project-pill:nth-child(4) {
+      transform: translateY(5px);
+    }
+    .projects-strip .project-pill:nth-child(5) {
+      transform: translateY(15px);
+    }
+    .projects-strip .project-pill:nth-child(6) {
+      transform: translateY(25px);
+    }
+    .projects-strip .project-pill:nth-child(7) {
+      transform: translateY(12px);
+    }
+    .projects-strip .project-pill:nth-child(8) {
+      transform: translateY(22px);
+    }
+
+    .projects-strip-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* CONTACT BLOCK FOR FOUNDERS */
+    .founder-contact {
+      margin-top: 20px;
+      background: #ffffff;
+      border-radius: var(--card-radius);
+      padding: 26px 24px 28px;
+      box-shadow: 0 20px 52px rgba(0,0,0,0.18);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 26px;
+    }
+
+    .founder-contact h3 {
+      font-size: 20px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .founder-contact p {
+      margin-bottom: 10px;
+    }
+
+    .founder-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-label {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 11px;
+      opacity: 0.9;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .contact-input,
+    .contact-textarea {
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 9px 14px;
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    .contact-textarea {
+      border-radius: 18px;
+      min-height: 90px;
+      resize: vertical;
+      padding-top: 10px;
+    }
+
+    .contact-input:focus,
+    .contact-textarea:focus {
+      outline: 2px solid var(--pink);
+    }
+
+    .btn-pill {
+      border-radius: 999px;
+      padding: 11px 24px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border: none;
+      cursor: pointer;
+      background: #ffe4f4;
+      color: #431010;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    .btn-pill:hover {
+      filter: brightness(1.05);
+    }
+
+    /* FOOTER */
+    .footer-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 40px 20px 20px;
+      color: var(--text-muted);
+    }
+
+    .footer-logo { font-weight: 800; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .nav-inner {
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .nav-group {
+        display: none;
+      }
+      .hero-inner {
+        grid-template-columns: minmax(0,1fr);
+        text-align: left;
+      }
+      .hero-right {
+        max-width: 460px;
+      }
+      .thesis-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .founder-contact {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 100px;
+      }
+      .section {
+        padding-block: 90px;
+      }
+      .project-pill {
+        min-width: 230px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-inner">
+      <nav class="nav-group">
+        <a href="index.html#invest" class="nav-link">Invest</a>
+        <a href="raise.html" class="nav-link active">Raise Capital</a>
+        <a href="index.html#resources" class="nav-link">Resources</a>
+      </nav>
+      <div class="logo">X HEALTH CAPITAL</div>
+      <nav class="nav-group">
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="index.html#concept" class="nav-link">Concept</a>
+        <a href="eb5.html" class="nav-link">EB-5 Visa</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-kicker">For founders & operators</div>
+        <h1>
+          We raise and deploy<br />
+          growth capital in
+          <span class="hero-highlight"><span>healthcare only</span></span>
+        </h1>
+        <p class="hero-subtext">
+          We back founders and established operators building scalable medical practices, wellness platforms,
+          and healthcare technology. No generic funds—every dollar we deploy is inside the healthcare ecosystem.
+        </p>
+      </div>
+      <div class="hero-right">
+        <div class="hero-tag">What we do</div>
+        <p>
+          X Health Capital invests in corporations and scalable healthcare businesses—from single-site clinics
+          with a clear roll-out plan to multi-location platforms and healthcare software.
+        </p>
+        <p>
+          We also structure <strong>crowdfunding campaigns</strong> and plug founders into a curated network
+          of <strong>angel investors</strong> who understand health services, reimbursement, and
+          healthcare compliance.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="eyebrow">How we invest</div>
+      <h2>We only invest in healthcare projects</h2>
+      <p>
+        Our mandate is narrow by design: we invest in healthcare, and nothing else. That focus lets us move
+        quickly on diligence, underwriting, and post-investment support.
+      </p>
+
+      <div class="thesis-grid">
+        <div class="thesis-card">
+          <div class="thesis-label">What we look for</div>
+          <p>
+            We back founders and established operators who are building <span class="inline-highlight">scalable healthcare businesses</span> with
+            a clear path to multi-site expansion or technology-enabled growth.
+          </p>
+          <ul>
+            <li>Licensed medical practices and healthcare corporations.</li>
+            <li>Roll-out plans for additional locations or services.</li>
+            <li>Professionalized operations, clean financials, and compliance mindset.</li>
+            <li>Founders who want a long-term partner, not just a check.</li>
+          </ul>
+        </div>
+        <div class="thesis-card">
+          <div class="thesis-label">How capital is sourced</div>
+          <p>
+            Depending on stage and structure, we:
+          </p>
+          <ul>
+            <li>Invest directly from our own balance sheet and vehicles.</li>
+            <li>Structure <strong>crowdfunding</strong> campaigns for community-backed healthcare projects.</li>
+            <li>Connect you with <strong>angel investors</strong> who specialize in health services and health tech.</li>
+          </ul>
+          <p class="founder-note">
+            We only invest in corporations and scalable business models—no one-off lifestyle practices without a
+            growth plan.
+          </p>
+        </div>
+      </div>
+
+      <div class="eyebrow">Track record</div>
+      <h2>Healthcare projects funded so far</h2>
+      <p>
+        Below are examples of deployments into urgent care, primary care, wellness, and healthcare technology.
+        Ticket sizes range from early expansion checks to multi-million-dollar platform builds.
+      </p>
+
+      <!-- FUNDED PROJECTS STRIP -->
+      <div class="projects-strip-wrapper">
+        <div class="projects-strip">
+          <div class="project-pill">
+            <div class="project-location">Urgent care · Sacramento, CA</div>
+            <div class="project-name">High-acuity urgent care hub</div>
+            <div class="project-amount"><strong>$1.1M</strong> committed</div>
+            <div class="project-meta">
+              Build-out, equipment, working capital, and launch marketing for a flagship urgent care location.
+            </div>
+          </div>
+
+          <div class="project-pill">
+            <div class="project-location">Primary & Walk-in care · Rocklin, CA</div>
+            <div class="project-name">Primary care + same-day access</div>
+            <div class="project-amount"><strong>$950k</strong> committed</div>
+            <div class="project-meta">
+              Hybrid primary care / walk-in clinic with membership and visit-based revenue streams.
+            </div>
+          </div>
+
+          <div class="project-pill">
+            <div class="project-location">Med spa · Rocklin, CA</div>
+            <div class="project-name">Medical aesthetics platform</div>
+            <div class="project-amount"><strong>$450k</strong> committed</div>
+            <div class="project-meta">
+              Device purchases, treatment rooms, and launch campaigns for a physician-supervised med spa.
+            </div>
+          </div>
+
+          <div class="project-pill">
+            <div class="project-location">Wellness center · Truckee, CA</div>
+            <div class="project-name">Mountain wellness & recovery center</div>
+            <div class="project-amount"><strong>$2.7M</strong> committed</div>
+            <div class="project-meta">
+              Full-scale wellness facility including IV therapy, recovery, and integrative services for locals and visitors.
+            </div>
+          </div>
+
+          <div class="project-pill">
+            <div class="project-location">Urgent care · Stockton, CA</div>
+            <div class="project-name">Community urgent care clinic</div>
+            <div class="project-amount"><strong>$1.3M</strong> committed</div>
+            <div class="project-meta">
+              Conversion of an existing medical office into a modern urgent care serving a high-need corridor.
+            </div>
+          </div>
+
+          <div class="project-pill">
+            <div class="project-location">Urgent care · Vallejo, CA</div>
+            <div class="project-name">Bay-area urgent care expansion</div>
+            <div class="project-amount"><strong>$1.75M</strong> committed</div>
+            <div class="project-meta">
+              Leasehold improvements, clinical equipment, and launch runway for a high-volume location.
+            </div>
+          </div>
+
+          <div class="project-pill">
+            <div class="project-location">Physical therapy · Roseville, CA</div>
+            <div class="project-name">Outpatient PT & rehab clinic</div>
+            <div class="project-amount"><strong>$330k</strong> committed</div>
+            <div class="project-meta">
+              Core equipment, EMR, staffing, and payor contracting support for a standalone PT practice.
+            </div>
+          </div>
+
+          <div class="project-pill">
+            <div class="project-location">AI software · DME workflow</div>
+            <div class="project-name">AI-driven DME platform</div>
+            <div class="project-amount"><strong>$500k</strong> committed</div>
+            <div class="project-meta">
+              Seed investment into an AI SaaS product streamlining durable medical equipment ordering and approvals.
+            </div>
+          </div>
+        </div>
+        <div class="projects-strip-note">
+          Amounts shown are rounded and illustrative of project scale. Individual deal terms vary by structure and stage.
+        </div>
+      </div>
+
+      <!-- FOUNDER CONTACT BLOCK -->
+      <div class="eyebrow">For founders</div>
+      <h2>Tell us about your project</h2>
+      <p>
+        If you’re building a healthcare business with room to grow—additional locations, new service lines, or a
+        defensible software platform—we’d like to hear from you.
+      </p>
+
+      <div class="founder-contact" id="raise-contact">
+        <div>
+          <h3>Share your project and funding needs</h3>
+          <p>
+            Use the form to outline your concept in plain language:
+          </p>
+          <ul style="margin: 6px 0 8px 18px; font-size: 13px; color: var(--text-muted);">
+            <li>What type of healthcare business are you building?</li>
+            <li>Where is it located (or where will it be)?</li>
+            <li>How much capital are you looking to raise?</li>
+            <li>What will the new capital unlock in the next 12–24 months?</li>
+          </ul>
+          <p class="founder-note">
+            We focus on scalable businesses and corporations only. We can invest directly, structure
+            <strong>crowdfunding</strong> campaigns, and help you connect with aligned
+            <strong>angel investors</strong> in our network.
+          </p>
+        </div>
+        <div>
+          <form id="raise-contact-form" class="contact-form">
+            <div>
+              <label class="contact-label" for="founder-email">Email</label>
+              <input class="contact-input" id="founder-email" name="email" type="email" required placeholder="you@example.com" />
+            </div>
+            <div>
+              <label class="contact-label" for="company-name">Company / project name</label>
+              <input class="contact-input" id="company-name" name="company" type="text" required placeholder="Clinic, platform, or project name" />
+            </div>
+            <div>
+              <label class="contact-label" for="funding-amount">Funding needed (approx.)</label>
+              <input class="contact-input" id="funding-amount" name="funding" type="text" required placeholder="$500k, $2M, etc." />
+            </div>
+            <div>
+              <label class="contact-label" for="project-brief">Brief description</label>
+              <textarea class="contact-textarea" id="project-brief" name="brief" placeholder="One or two paragraphs about your project, traction, and why now."></textarea>
+            </div>
+            <button type="submit" class="btn-pill">Submit project overview</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer-bar">
+    <span class="footer-logo">X HEALTH CAPITAL</span>
+    <span>© 2025 – All rights reserved</span>
+    <span>Legal notice</span>
+    <span>Privacy</span>
+  </footer>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("raise-contact-form");
+
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        // Here you would normally send data to your backend or form handler.
+        alert("Thank you. Your project overview has been received.");
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
