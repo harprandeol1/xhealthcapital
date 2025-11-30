@@ -171,6 +171,8 @@
       display: inline-flex;
       gap: 12px;
       margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .btn-pill {
@@ -186,6 +188,9 @@
       font-weight: 600;
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
       transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .btn-pill-secondary {
@@ -199,7 +204,7 @@
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
     }
 
-    /* Floating hands-ish shapes */
+    /* Floating shapes */
     .hero-shape {
       position: absolute;
       width: 210px;
@@ -294,7 +299,6 @@
       height: 60%;
       border-radius: 40% 60% 55% 45%;
       border: 3px solid #111111;
-      border-style: solid;
     }
 
     .team-member {
@@ -539,6 +543,7 @@
       justify-content: center;
       gap: 12px;
       margin-top: 30px;
+      flex-wrap: wrap;
     }
 
     .circle-btn {
@@ -667,6 +672,7 @@
       <nav class="nav-group">
         <a href="#about" class="nav-link">About</a>
         <a href="#concept" class="nav-link">Concept</a>
+        <a href="eb5.html" class="nav-link">EB-5 Visa</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
     </div>
@@ -692,8 +698,10 @@
         with data, expertise, and a long-term view.
       </p>
       <div class="hero-actions">
-        <button class="btn-pill">I’m an investor</button>
-        <button class="btn-pill btn-pill-secondary">I’m a founder</button>
+        <a href="#invest" class="btn-pill">I’m an investor</a>
+        <a href="#raise" class="btn-pill btn-pill-secondary">I’m a founder</a>
+        <!-- Direct link to EB-5 page -->
+        <a href="eb5.html" class="btn-pill btn-pill-secondary">EB-5 Visa for Healthcare</a>
       </div>
     </div>
   </section>
@@ -807,7 +815,7 @@
           <div class="resource-side-card side-cta">
             <h3>Join the community</h3>
             <p>Monthly deal notes, operator round-ups, and events for healthcare builders.</p>
-            <button class="btn-pill btn-pill-secondary">Subscribe to the newsletter</button>
+            <a href="#contact" class="btn-pill btn-pill-secondary">Subscribe to the newsletter</a>
           </div>
         </aside>
       </div>
@@ -933,7 +941,7 @@
 
       <div class="deals-actions">
         <button class="circle-btn">&#8592;</button>
-        <button class="btn-pill btn-pill-secondary">Discover healthcare opportunities</button>
+        <a href="eb5.html" class="btn-pill btn-pill-secondary">Explore EB-5 healthcare projects</a>
         <button class="circle-btn">&#8594;</button>
       </div>
     </div>
@@ -949,7 +957,7 @@
             A short monthly email with our best insights, notable deals, and upcoming events across
             the healthcare ecosystem.
           </p>
-          <button class="btn-pill btn-pill-secondary">Subscribe to the newsletter</button>
+          <a href="mailto:info@xhealthcapital.com" class="btn-pill btn-pill-secondary">Subscribe to the newsletter</a>
         </div>
 
         <div class="cta-card cta-card-light" id="raise">
@@ -958,7 +966,7 @@
             Raising your first institutional round or planning a roll-up? Let’s talk about where
             you’re headed and what kind of capital fits.
           </p>
-          <button class="btn-pill btn-pill-secondary">Speak with an advisor</button>
+          <a href="https://scheduler.zoom.us/harpran-deol" class="btn-pill btn-pill-secondary">Speak with an advisor</a>
         </div>
       </div>
 
