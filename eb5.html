@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet" />
   <style>
-    /* Same design language as home page */
     :root {
       --green-deep: #004737;
       --green-mid: #0a5b43;
@@ -32,7 +31,7 @@
 
     .page { min-height: 100vh; background: var(--cream); }
 
-    /* NAVBAR (same as home) */
+    /* NAVBAR */
     .nav {
       position: fixed;
       top: 18px;
@@ -126,7 +125,7 @@
     }
 
     .hero-heading-line.hero-highlight {
-      font-size: clamp(18px, 3vw, 22px); /* smaller so it fits inside pink bar */
+      font-size: clamp(18px, 3vw, 22px);
       letter-spacing: 0.05em;
       text-transform: none;
       margin-top: 10px;
@@ -219,7 +218,7 @@
       z-index: -1;
     }
 
-    /* NEW EB-5 JOURNEY SECTION */
+    /* EB-5 JOURNEY SECTION */
     .journey-section {
       margin: 40px 0 60px;
       padding: 30px 28px 34px;
@@ -272,19 +271,24 @@
       gap: 18px;
       align-items: flex-start;
       margin-bottom: 18px;
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.3s var(--transition-fast), transform 0.3s var(--transition-fast);
+      opacity: 0.2;
+      transform: translateY(10px);
+      filter: blur(1px);
+      transition:
+        opacity 0.25s var(--transition-fast),
+        transform 0.25s var(--transition-fast),
+        filter 0.25s var(--transition-fast);
     }
 
-    .journey-step.visible {
+    .journey-step.active {
       opacity: 1;
       transform: translateY(0);
+      filter: none;
     }
 
     .journey-index {
-      min-width: 40px;
-      height: 40px;
+      min-width: 42px;
+      height: 42px;
       border-radius: 50%;
       border: 2px solid #111111;
       display: flex;
@@ -300,7 +304,7 @@
     }
 
     .journey-step-title {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
       margin-bottom: 4px;
     }
@@ -691,12 +695,12 @@
             company with a clear plan, team, and support.
           </p>
 
-          <!-- NEW EB-5 JOURNEY SECTION -->
+          <!-- EB-5 JOURNEY SECTION -->
           <div class="journey-section" id="eb5-journey">
             <div class="journey-header">
               <div class="journey-title">EB-5 JOURNEY AT A GLANCE</div>
               <div class="journey-sub">
-                Scroll to reveal each step of a typical EB-5 timeline with a healthcare business:
+                Scroll through each step of a typical EB-5 timeline with a healthcare business:
                 from choosing your project through to an unconditional green card.
               </div>
             </div>
@@ -1042,48 +1046,45 @@
     const form = document.getElementById("eb5-contact-form");
     const zoomCta = document.getElementById("zoom-cta");
 
-    let currentStepIndex = -1;
+    function updateJourneyActiveStep() {
+      if (!journeySection || journeySteps.length === 0) return;
 
-    function isJourneyInView() {
-      if (!journeySection) return false;
       const rect = journeySection.getBoundingClientRect();
-      return rect.top < window.innerHeight && rect.bottom > 0;
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      // If the whole block is completely off-screen, do nothing
+      if (rect.bottom < 0 || rect.top > viewportHeight) return;
+
+      const sectionHeight = rect.height || (rect.bottom - rect.top);
+      const sectionTopInViewport = rect.top;
+      const centerOfViewport = viewportHeight / 2;
+
+      // Position of viewport center relative to top of the journey section
+      const relativeCenter = centerOfViewport - sectionTopInViewport;
+      const progressRaw = relativeCenter / sectionHeight;
+
+      // Clamp between 0–1 and map to step index
+      const progress = Math.max(0, Math.min(1, progressRaw));
+      let index = Math.floor(progress * journeySteps.length);
+
+      if (index < 0) index = 0;
+      if (index > journeySteps.length - 1) index = journeySteps.length - 1;
+
+      journeySteps.forEach((step, i) => {
+        step.classList.toggle("active", i === index);
+      });
     }
 
-    function showNextStep() {
-      if (currentStepIndex < journeySteps.length - 1) {
-        currentStepIndex++;
-        journeySteps[currentStepIndex].classList.add("visible");
-      }
-    }
+    // Initial call in case the section is already in view
+    updateJourneyActiveStep();
 
-    // Reveal first step as soon as section first comes into view
-    function initialRevealOnScroll() {
-      if (currentStepIndex === -1 && isJourneyInView()) {
-        showNextStep();
-        window.removeEventListener("scroll", initialRevealOnScroll);
-      }
-    }
-
-    window.addEventListener("scroll", initialRevealOnScroll, { passive: true });
-
-    // Reveal one new step per scroll down while journey section is in view
-    window.addEventListener(
-      "wheel",
-      function (e) {
-        if (!isJourneyInView()) return;
-        if (e.deltaY > 0) {
-          showNextStep();
-        }
-      },
-      { passive: true }
-    );
+    window.addEventListener("scroll", updateJourneyActiveStep, { passive: true });
+    window.addEventListener("resize", updateJourneyActiveStep);
 
     // Simple front-end handling: show Zoom CTA after form "submit"
     if (form && zoomCta) {
       form.addEventListener("submit", function (e) {
         e.preventDefault();
-        // Here you would normally send data to your backend / form service.
         zoomCta.style.display = "block";
         zoomCta.scrollIntoView({ behavior: "smooth", block: "start" });
       });
