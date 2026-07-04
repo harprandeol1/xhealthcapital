@@ -1,991 +1,539 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>X Health Capital – Capital for Healthcare Founders</title>
-  <meta name="description" content="X Health Capital partners with healthcare founders building urgent care, primary care, imaging, med spa, and outpatient healthcare businesses. Book a consultation to discuss your project." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --navy: #0c1f3f;
-      --navy-mid: #1a3560;
-      --teal: #0d9488;
-      --teal-light: #f0fdfa;
-      --gray-50: #f9fafb;
-      --gray-100: #f3f4f6;
-      --gray-200: #e5e7eb;
-      --gray-400: #9ca3af;
-      --gray-600: #4b5563;
-      --gray-800: #1f2937;
-      --white: #ffffff;
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 22px;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.07), 0 2px 6px rgba(0,0,0,0.04);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: "Inter", system-ui, sans-serif;
-      color: var(--gray-800);
-      background: var(--white);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { text-decoration: none; color: inherit; }
-
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    /* ── NAV ── */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--gray-200);
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 0;
-    }
-
-    .logo {
-      font-size: 17px;
-      font-weight: 800;
-      color: var(--navy);
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-    }
-
-    .logo em { color: var(--teal); font-style: normal; }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--gray-600);
-    }
-
-    .nav-links a:hover { color: var(--navy); }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      background: var(--navy);
-      color: var(--white);
-      font-size: 14px;
-      font-weight: 600;
-      padding: 10px 20px;
-      border-radius: 999px;
-      transition: background 0.15s;
-    }
-
-    .nav-cta:hover { background: var(--navy-mid); }
-
-    /* ── BUTTONS ── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 15px;
-      padding: 13px 26px;
-      border-radius: 999px;
-      transition: 0.15s;
-      cursor: pointer;
-      border: none;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: var(--navy);
-      color: var(--white);
-    }
-    .btn-primary:hover { background: var(--navy-mid); }
-
-    .btn-teal {
-      background: var(--teal);
-      color: var(--white);
-    }
-    .btn-teal:hover { opacity: 0.9; }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--navy);
-      border: 1.5px solid var(--gray-200);
-    }
-    .btn-ghost:hover { border-color: var(--navy); background: var(--gray-50); }
-
-    /* ── HERO ── */
-    .hero {
-      padding: 100px 0 80px;
-      background: var(--white);
-      border-bottom: 1px solid var(--gray-100);
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 64px;
-      align-items: center;
-    }
-
-    .hero-label {
-      display: inline-block;
-      background: var(--teal-light);
-      color: var(--teal);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 999px;
-      margin-bottom: 22px;
-    }
-
-    .hero h1 {
-      font-size: clamp(38px, 5.5vw, 58px);
-      font-weight: 800;
-      line-height: 1.07;
-      letter-spacing: -0.04em;
-      color: var(--navy);
-      margin-bottom: 22px;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--teal);
-    }
-
-    .hero-sub {
-      font-size: 18px;
-      color: var(--gray-600);
-      max-width: 520px;
-      margin-bottom: 36px;
-      line-height: 1.65;
-    }
-
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-
-    /* Hero card */
-    .hero-card {
-      background: var(--gray-50);
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      box-shadow: var(--shadow-md);
-    }
-
-    .hero-card-label {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--gray-400);
-      margin-bottom: 18px;
-    }
-
-    .project-list { list-style: none; display: grid; gap: 2px; }
-
-    .project-list li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--gray-200);
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--gray-800);
-    }
-
-    .project-list li:last-child { border-bottom: none; }
-
-    .project-list .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--teal);
-      flex-shrink: 0;
-    }
-
-    .hero-card-cta {
-      margin-top: 22px;
-      padding-top: 22px;
-      border-top: 1px solid var(--gray-200);
-      font-size: 13px;
-      color: var(--gray-600);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .hero-card-cta a {
-      font-weight: 600;
-      color: var(--teal);
-      font-size: 13px;
-    }
-
-    /* ── LOGOS ── */
-    .trust-bar {
-      padding: 26px 0;
-      border-bottom: 1px solid var(--gray-100);
-      background: var(--gray-50);
-    }
-
-    .trust-bar-inner {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-
-    .trust-label {
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--gray-400);
-      white-space: nowrap;
-    }
-
-    .trust-items {
-      display: flex;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-
-    .trust-item {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--gray-400);
-    }
-
-    /* ── SECTIONS ── */
-    section { padding: 88px 0; }
-
-    .kicker {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 10px;
-    }
-
-    .section-heading {
-      font-size: clamp(30px, 4vw, 42px);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.035em;
-      color: var(--navy);
-      margin-bottom: 14px;
-    }
-
-    .section-sub {
-      font-size: 17px;
-      color: var(--gray-600);
-      max-width: 600px;
-      line-height: 1.65;
-    }
-
-    .section-header {
-      margin-bottom: 52px;
-    }
-
-    .section-header.centered {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* ── WHAT WE FUND ── */
-    .fund-section { background: var(--gray-50); }
-
-    .fund-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .fund-card {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius-md);
-      padding: 26px;
-      box-shadow: var(--shadow-sm);
-      transition: box-shadow 0.15s, transform 0.15s;
-    }
-
-    .fund-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-    }
-
-    .fund-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-sm);
-      background: var(--teal-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      font-size: 18px;
-    }
-
-    .fund-card h3 {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-
-    .fund-card p {
-      font-size: 14px;
-      color: var(--gray-600);
-      line-height: 1.55;
-    }
-
-    /* ── WHY ── */
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-
-    .why-copy { position: sticky; top: 100px; }
-
-    .why-copy .section-sub { margin-bottom: 32px; }
-
-    .stat-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-top: 36px;
-    }
-
-    .stat-box {
-      background: var(--gray-50);
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius-md);
-      padding: 20px;
-    }
-
-    .stat-box .num {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--navy);
-      letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .stat-box .stat-label {
-      font-size: 13px;
-      color: var(--gray-600);
-      font-weight: 500;
-    }
-
-    .why-points { display: grid; gap: 16px; }
-
-    .why-point {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius-md);
-      padding: 22px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .why-point-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--navy);
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 13px;
-      flex-shrink: 0;
-    }
-
-    .why-point h3 {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 5px;
-    }
-
-    .why-point p {
-      font-size: 14px;
-      color: var(--gray-600);
-      line-height: 1.55;
-    }
-
-    /* ── CRITERIA ── */
-    .criteria-section { background: var(--navy); }
-
-    .criteria-section .kicker { color: var(--teal); }
-
-    .criteria-section .section-heading { color: var(--white); }
-
-    .criteria-section .section-sub { color: #94a3b8; }
-
-    .criteria-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-top: 48px;
-    }
-
-    .criteria-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius-md);
-      padding: 26px;
-    }
-
-    .criteria-card h3 {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-
-    .criteria-card p {
-      font-size: 14px;
-      color: #94a3b8;
-      line-height: 1.55;
-    }
-
-    .criteria-check {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--teal);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 14px;
-      font-size: 12px;
-      color: white;
-      font-weight: 800;
-    }
-
-    /* ── PROCESS ── */
-    .process-section { background: var(--gray-50); }
-
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 48px;
-    }
-
-    .process-step {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius-md);
-      padding: 26px;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-    }
-
-    .step-num {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 14px;
-    }
-
-    .process-step h3 {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-
-    .process-step p {
-      font-size: 13px;
-      color: var(--gray-600);
-      line-height: 1.55;
-    }
-
-    /* ── CTA ── */
-    .cta-section { background: var(--white); }
-
-    .cta-box {
-      background: var(--navy);
-      border-radius: var(--radius-lg);
-      padding: 72px 60px;
-      text-align: center;
-    }
-
-    .cta-box h2 {
-      font-size: clamp(28px, 4vw, 40px);
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -0.035em;
-      margin-bottom: 14px;
-      line-height: 1.15;
-    }
-
-    .cta-box p {
-      font-size: 17px;
-      color: #94a3b8;
-      max-width: 540px;
-      margin: 0 auto 36px;
-      line-height: 1.65;
-    }
-
-    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-    .btn-white {
-      background: var(--white);
-      color: var(--navy);
-      font-weight: 700;
-    }
-    .btn-white:hover { background: var(--gray-100); }
-
-    .btn-teal-outline {
-      background: transparent;
-      color: var(--white);
-      border: 1.5px solid rgba(255,255,255,0.25);
-      font-weight: 600;
-    }
-    .btn-teal-outline:hover { border-color: rgba(255,255,255,0.6); }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--navy);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 48px 0 32px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 36px;
-    }
-
-    .footer-brand .logo { font-size: 15px; color: white; }
-
-    .footer-brand p {
-      font-size: 13px;
-      color: #64748b;
-      margin-top: 12px;
-      line-height: 1.6;
-      max-width: 280px;
-    }
-
-    footer h4 {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #475569;
-      margin-bottom: 14px;
-    }
-
-    footer ul { list-style: none; display: grid; gap: 8px; }
-
-    footer ul a {
-      font-size: 14px;
-      color: #94a3b8;
-      transition: color 0.15s;
-    }
-
-    footer ul a:hover { color: white; }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding-top: 24px;
-      font-size: 12px;
-      color: #475569;
-      line-height: 1.6;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 960px) {
-      .hero-inner,
-      .why-grid,
-      .fund-grid,
-      .criteria-grid,
-      .footer-grid { grid-template-columns: 1fr; }
-
-      .process-steps { grid-template-columns: 1fr 1fr; }
-
-      .nav-links { display: none; }
-
-      .cta-box { padding: 52px 28px; }
-
-      .why-copy { position: static; }
-    }
-
-    @media (max-width: 600px) {
-      .hero { padding: 72px 0 60px; }
-      section { padding: 64px 0; }
-      .process-steps { grid-template-columns: 1fr; }
-      .stat-row { grid-template-columns: 1fr; }
-      .hero-actions, .cta-actions { flex-direction: column; }
-      .btn { width: 100%; justify-content: center; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xHealth Capital | Healthcare Investment Immigration — Trusted Green Card Path</title>
+<meta name="description" content="xHealth Capital helps foreign investors obtain U.S. permanent residency through EB-5 investments exclusively in healthcare projects — primary care, urgent care, specialist offices, hospice, outpatient surgery, imaging centers, skilled nursing, and senior living.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
 
-<!-- NAV -->
-<header>
-  <div class="container">
-    <nav>
-      <div class="logo">X Health<em> Capital</em></div>
-      <div class="nav-links">
-        <a href="#fund">What We Fund</a>
-        <a href="#why">Why X Health</a>
-        <a href="#criteria">Criteria</a>
-        <a href="#process">Process</a>
-      </div>
-      <a class="nav-cta" href="https://scheduler.zoom.us/harpran-deol" target="_blank" rel="noopener">Book a Call</a>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="logo" aria-label="xHealth Capital home">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 21s-7.5-4.6-10-9.3C.5 8.1 2.3 4 6.2 4c2.1 0 3.7 1.2 4.8 2.8C12.1 5.2 13.7 4 15.8 4c3.9 0 5.7 4.1 4.2 7.7C19.5 16.4 12 21 12 21z" fill="currentColor" opacity="0.15"/>
+        <path d="M12 21s-7.5-4.6-10-9.3C.5 8.1 2.3 4 6.2 4c2.1 0 3.7 1.2 4.8 2.8C12.1 5.2 13.7 4 15.8 4c3.9 0 5.7 4.1 4.2 7.7C19.5 16.4 12 21 12 21z" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 12h2.2l1.1-2.4 1.6 4.8 1-2.4H16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>x<em>Health</em> Capital</span>
+    </a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#sectors">Healthcare Sectors</a></li>
+        <li><a href="#why-eb5">Why EB-5</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
+
+    <div class="header-actions">
+      <a href="#contact" class="btn btn-primary btn-sm">Schedule a Free Consultation</a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="container hero-inner">
-    <div>
-      <span class="hero-label">Healthcare Capital</span>
-      <h1>Capital for <em>Healthcare</em> Founders Who Build</h1>
-      <p class="hero-sub">
-        X Health Capital partners with founders building outpatient healthcare businesses —
-        from urgent care to ambulatory surgery. We bring capital, structure, and operator expertise.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="https://scheduler.zoom.us/harpran-deol" target="_blank" rel="noopener">Book a Free Consultation</a>
-        <a class="btn btn-ghost" href="#fund">See What We Fund</a>
+<main id="main">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="top">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">EB-5 Immigrant Investor Program &middot; Healthcare Focused</p>
+        <h1>Earn Your Green Card by Investing in <span class="highlight">America's Healthcare Infrastructure</span></h1>
+        <p class="lede">xHealth Capital is a regional-center operator and EB-5 fund manager focused exclusively on healthcare real estate — primary care clinics, urgent care centers, specialist offices, hospice facilities, outpatient surgery centers, imaging centers, skilled nursing facilities, and senior living communities.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Schedule a Free EB-5 Consultation</a>
+          <a href="#sectors" class="btn btn-ghost">Explore Healthcare Sectors</a>
+        </div>
+        <ul class="hero-trust">
+          <li><strong>100%</strong> Project Approval Rate<sup>1</sup></li>
+          <li><strong>8</strong> Healthcare Verticals</li>
+          <li><strong>$800K</strong> Minimum Rural TEA Investment</li>
+        </ul>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card card-a">
+          <span class="dot"></span>
+          <strong>Rural TEA Priority Processing</strong>
+          <p>Faster I-526E adjudication for qualifying rural healthcare projects</p>
+        </div>
+        <div class="hero-card card-b">
+          <strong>10+</strong>
+          <p>Qualifying jobs created per investor across our healthcare portfolio</p>
+        </div>
+        <div class="hero-card card-c">
+          <strong>Job Creation Buffer</strong>
+          <p>Healthcare staffing needs support strong direct + indirect job counts</p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="hero-card">
-      <p class="hero-card-label">Healthcare project types</p>
-      <ul class="project-list">
-        <li><span class="dot"></span>Urgent Care Centers</li>
-        <li><span class="dot"></span>Primary Care Clinics</li>
-        <li><span class="dot"></span>Radiology &amp; Imaging Centers</li>
-        <li><span class="dot"></span>Ambulatory Surgery Centers</li>
-        <li><span class="dot"></span>Med Spa &amp; Wellness Centers</li>
-        <li><span class="dot"></span>Physical Therapy Clinics</li>
-        <li><span class="dot"></span>Healthcare Technology</li>
+  <!-- ===== STATS BAR ===== -->
+  <section class="stats-bar" aria-label="Company statistics">
+    <div class="container stats-grid">
+      <div class="stat"><span class="stat-num">100%</span><span class="stat-label">USCIS Project Approval Rate</span></div>
+      <div class="stat"><span class="stat-num">8</span><span class="stat-label">Healthcare Investment Categories</span></div>
+      <div class="stat"><span class="stat-num">$800K</span><span class="stat-label">Rural TEA Minimum Investment</span></div>
+      <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Jobs Created Per Investor</span></div>
+    </div>
+  </section>
+
+  <!-- ===== WHY HEALTHCARE EB-5 ===== -->
+  <section class="section" id="why-eb5">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Why Healthcare</p>
+        <h2>A Recession-Resistant Path to a U.S. Green Card</h2>
+        <p class="section-sub">Healthcare demand doesn't disappear in a downturn. We invest EB-5 capital exclusively in facilities that communities rely on every day — creating durable jobs and giving investors a defensible, needs-based asset class.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="feature-icon">🏥</div>
+          <h3>Non-Discretionary Demand</h3>
+          <p>Primary care, urgent care, and imaging visits aren't optional purchases — utilization holds steady across economic cycles.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">👥</div>
+          <h3>Strong, Durable Job Creation</h3>
+          <p>Clinical and support staffing ratios in healthcare facilities help projects clear the EB-5 job-creation requirement with room to spare.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📍</div>
+          <h3>Rural TEA Alignment</h3>
+          <p>Many underserved healthcare facilities sit in Targeted Employment Areas, qualifying investors for the reduced $800,000 threshold and priority processing.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📊</div>
+          <h3>Aging Population Tailwinds</h3>
+          <p>Demand for skilled nursing, hospice, and senior living is rising with U.S. demographic trends, supporting long-term facility occupancy.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🛡️</div>
+          <h3>Regulated, Licensed Operators</h3>
+          <p>We partner only with experienced, licensed healthcare operators and developers with track records in their specific care category.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📄</div>
+          <h3>Full Financial Transparency</h3>
+          <p>Every project offering includes underlying financials, job-creation methodology, and construction/operating milestones for investor diligence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HEALTHCARE SECTORS ===== -->
+  <section class="section section-alt" id="sectors">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Where We Invest</p>
+        <h2>Healthcare-Only EB-5 Investment Sectors</h2>
+        <p class="section-sub">We do not invest outside healthcare real estate. Every project we sponsor falls into one of the following categories.</p>
+      </div>
+
+      <div class="sector-grid">
+        <article class="sector-card">
+          <div class="sector-icon" aria-hidden="true">🩺</div>
+          <h3>Primary Care Clinics</h3>
+          <p>Community-based family medicine and internal medicine practices serving as the front line of preventive care.</p>
+        </article>
+        <article class="sector-card">
+          <div class="sector-icon" aria-hidden="true">🚑</div>
+          <h3>Urgent Care Centers</h3>
+          <p>Walk-in facilities providing extended-hours treatment for non-emergency conditions, easing pressure on ERs.</p>
+        </article>
+        <article class="sector-card">
+          <div class="sector-icon" aria-hidden="true">👨‍⚕️</div>
+          <h3>Specialist Medical Offices</h3>
+          <p>Cardiology, orthopedics, dermatology, OB-GYN, and other specialty practices requiring dedicated clinical space.</p>
+        </article>
+        <article class="sector-card">
+          <div class="sector-icon" aria-hidden="true">🕊️</div>
+          <h3>Hospice &amp; Palliative Care</h3>
+          <p>Inpatient and residential hospice facilities delivering end-of-life comfort care for patients and families.</p>
+        </article>
+        <article class="sector-card">
+          <div class="sector-icon" aria-hidden="true">🏨</div>
+          <h3>Outpatient Surgery Centers</h3>
+          <p>Ambulatory surgical centers (ASCs) enabling same-day procedures at lower cost than hospital settings.</p>
+        </article>
+        <article class="sector-card">
+          <div class="sector-icon" aria-hidden="true">🖥️</div>
+          <h3>Diagnostic Imaging Centers</h3>
+          <p>MRI, CT, X-ray, and ultrasound facilities providing critical diagnostic infrastructure for referring physicians.</p>
+        </article>
+        <article class="sector-card">
+          <div class="sector-icon" aria-hidden="true">🛏️</div>
+          <h3>Skilled Nursing Facilities</h3>
+          <p>Licensed SNFs providing 24-hour clinical care and rehabilitation for patients requiring extended recovery.</p>
+        </article>
+        <article class="sector-card">
+          <div class="sector-icon" aria-hidden="true">🏡</div>
+          <h3>Senior &amp; Assisted Living</h3>
+          <p>Old-age homes and assisted living communities offering housing, support services, and daily care for seniors.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED PROJECTS ===== -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Current Offerings</p>
+        <h2>Featured Healthcare EB-5 Projects</h2>
+        <p class="section-sub">A sample of the healthcare facilities currently open to EB-5 investment. Contact us for full offering documents.</p>
+      </div>
+
+      <div class="project-grid">
+
+        <article class="project-card">
+          <div class="project-tags"><span class="tag tag-rural">Rural TEA</span><span class="tag tag-type">Senior Loan</span></div>
+          <h3>Meadowbrook Skilled Nursing Facility</h3>
+          <p class="project-loc">Rural Georgia</p>
+          <p>120-bed skilled nursing and rehabilitation facility serving a designated rural targeted employment area.</p>
+          <ul class="project-meta">
+            <li>Minimum Investment: $800,000</li>
+            <li>Est. Jobs per Investor: 12+</li>
+            <li>Status: Under Construction</li>
+          </ul>
+          <a href="#contact" class="link-arrow">Request Project Details →</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-tags"><span class="tag tag-rural">Rural TEA</span><span class="tag tag-type">Equity</span></div>
+          <h3>Riverside Outpatient Surgery Center</h3>
+          <p class="project-loc">Rural Texas</p>
+          <p>Multi-specialty ambulatory surgical center with four operating suites and same-day recovery capacity.</p>
+          <ul class="project-meta">
+            <li>Minimum Investment: $800,000</li>
+            <li>Est. Jobs per Investor: 10+</li>
+            <li>Status: Pre-Construction</li>
+          </ul>
+          <a href="#contact" class="link-arrow">Request Project Details →</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-tags"><span class="tag tag-urban">Urban TEA</span><span class="tag tag-type">Loan</span></div>
+          <h3>Harborview Urgent Care Network</h3>
+          <p class="project-loc">Urban Florida</p>
+          <p>A five-location urgent care rollout providing extended-hours acute care across an underserved metro corridor.</p>
+          <ul class="project-meta">
+            <li>Minimum Investment: $1,050,000</li>
+            <li>Est. Jobs per Investor: 11+</li>
+            <li>Status: Operating</li>
+          </ul>
+          <a href="#contact" class="link-arrow">Request Project Details →</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-tags"><span class="tag tag-rural">Rural TEA</span><span class="tag tag-type">Equity</span></div>
+          <h3>Willow Creek Assisted Living Community</h3>
+          <p class="project-loc">Rural North Carolina</p>
+          <p>150-unit assisted living and memory-care community with on-site therapy and dining services.</p>
+          <ul class="project-meta">
+            <li>Minimum Investment: $800,000</li>
+            <li>Est. Jobs per Investor: 13+</li>
+            <li>Status: Under Construction</li>
+          </ul>
+          <a href="#contact" class="link-arrow">Request Project Details →</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-tags"><span class="tag tag-rural">Rural TEA</span><span class="tag tag-type">Senior Loan</span></div>
+          <h3>Serenity Hospice House</h3>
+          <p class="project-loc">Rural Tennessee</p>
+          <p>24-bed inpatient hospice residence with family suites, chaplaincy services, and palliative care teams.</p>
+          <ul class="project-meta">
+            <li>Minimum Investment: $800,000</li>
+            <li>Est. Jobs per Investor: 10+</li>
+            <li>Status: Pre-Construction</li>
+          </ul>
+          <a href="#contact" class="link-arrow">Request Project Details →</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-tags"><span class="tag tag-urban">Urban TEA</span><span class="tag tag-type">Loan</span></div>
+          <h3>Precision Diagnostic Imaging Center</h3>
+          <p class="project-loc">Urban Ohio</p>
+          <p>Full-service imaging center offering MRI, CT, mammography, and ultrasound in a high-density medical district.</p>
+          <ul class="project-meta">
+            <li>Minimum Investment: $1,050,000</li>
+            <li>Est. Jobs per Investor: 9+</li>
+            <li>Status: Operating</li>
+          </ul>
+          <a href="#contact" class="link-arrow">Request Project Details →</a>
+        </article>
+
+      </div>
+
+      <div class="center-cta">
+        <a href="#contact" class="btn btn-primary">View All Healthcare Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="section section-alt" id="process">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">How It Works</p>
+        <h2>Your Path From Investment to Green Card</h2>
+      </div>
+
+      <ol class="process-steps">
+        <li>
+          <span class="step-num">1</span>
+          <h3>Free Consultation &amp; Eligibility Review</h3>
+          <p>We assess your immigration goals, timeline, and source-of-funds profile to confirm EB-5 fit.</p>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <h3>Select a Healthcare Project</h3>
+          <p>Review offering documents for our current healthcare sectors and choose the project that matches your risk and timeline preferences.</p>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <h3>Source of Funds &amp; Investment</h3>
+          <p>Your immigration attorney prepares source-of-funds documentation while you complete the subscription and capital transfer.</p>
+        </li>
+        <li>
+          <span class="step-num">4</span>
+          <h3>File Form I-526E</h3>
+          <p>Your attorney files the immigrant petition, which includes the healthcare project's business plan and job-creation methodology.</p>
+        </li>
+        <li>
+          <span class="step-num">5</span>
+          <h3>Conditional Green Card</h3>
+          <p>Upon approval, you and your qualifying family members receive conditional permanent residency.</p>
+        </li>
+        <li>
+          <span class="step-num">6</span>
+          <h3>File Form I-829 &amp; Remove Conditions</h3>
+          <p>After job-creation requirements are documented, you file to remove conditions and receive a 10-year Green Card.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Investor Stories</p>
+        <h2>Families Who Chose Healthcare EB-5</h2>
+      </div>
+      <div class="testimonial-grid">
+        <blockquote class="testimonial">
+          <p>"We chose a skilled nursing project because healthcare felt like the safest, most necessary industry we could invest in. The transparency around job creation gave us real confidence."</p>
+          <footer>— Investor family, India</footer>
+        </blockquote>
+        <blockquote class="testimonial">
+          <p>"The rural TEA urgent care project let us qualify at the lower investment threshold while supporting a community that genuinely needed the facility."</p>
+          <footer>— Investor family, Vietnam</footer>
+        </blockquote>
+        <blockquote class="testimonial">
+          <p>"Knowing our capital was funding an outpatient surgery center — not speculative real estate — made the EB-5 decision much easier for our family."</p>
+          <footer>— Investor family, Brazil</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section section-alt" id="faq">
+    <div class="container container-narrow">
+      <div class="section-head">
+        <p class="eyebrow">Frequently Asked Questions</p>
+        <h2>Healthcare EB-5 FAQs</h2>
+      </div>
+
+      <div class="accordion" id="faq-accordion">
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="true">
+            <span>Why does xHealth Capital only invest in healthcare projects?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel" style="max-height:1000px;">
+            <p>Healthcare real estate combines non-discretionary community demand with strong staffing-driven job creation — two factors that directly support both the EB-5 job-creation requirement and long-term facility viability. Focusing exclusively on this sector lets our team build deep underwriting expertise in medical licensing, reimbursement models, and healthcare operators.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span>What is the minimum EB-5 investment amount?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Under current law, the minimum investment is $800,000 for projects in a qualifying Targeted Employment Area (TEA) — typically rural or high-unemployment areas — and $1,050,000 for non-TEA projects. Most of our healthcare projects are located in rural TEAs to take advantage of the lower threshold and priority processing.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span>How does job creation work for healthcare facilities?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Each EB-5 investor must be credited with at least 10 full-time qualifying jobs. Healthcare facilities generally support strong direct job counts (clinicians, nurses, technicians, administrative staff) plus indirect and induced jobs in regional-center-sponsored projects, giving many of our offerings a healthy job-creation buffer above the minimum requirement.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span>Which healthcare categories do you offer?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>We currently sponsor projects across primary care clinics, urgent care centers, specialist medical offices, hospice and palliative care facilities, outpatient surgery centers, diagnostic imaging centers, skilled nursing facilities, and senior/assisted living communities.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span>Can my spouse and children immigrate with me?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Yes. A successful EB-5 petition can lead to a Green Card for the principal investor, their spouse, and unmarried children under 21.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span>Is my investment at risk?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Yes — EB-5 law requires that capital remain genuinely "at risk" with a real possibility of gain or loss. We provide full offering documents, financial projections, and operator track records so investors can evaluate that risk before committing capital.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT / CTA ===== -->
+  <section class="section cta-section" id="contact">
+    <div class="container cta-inner">
+      <div class="cta-copy">
+        <p class="eyebrow eyebrow-light">Get Started</p>
+        <h2>Schedule Your Free Healthcare EB-5 Consultation</h2>
+        <p>Speak confidentially with our team about your eligibility, timeline, and the healthcare project categories available today.</p>
+        <ul class="cta-list">
+          <li>✔ No-obligation eligibility review</li>
+          <li>✔ Access to current healthcare project offering documents</li>
+          <li>✔ Introductions to independent immigration attorneys</li>
+        </ul>
+      </div>
+
+      <form class="cta-form" id="contact-form">
+        <div class="form-row">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="fname" required>
+        </div>
+        <div class="form-row">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lname" required>
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-row">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        <div class="form-row">
+          <label for="country">Country of Residence</label>
+          <input type="text" id="country" name="country">
+        </div>
+        <div class="form-row">
+          <label for="sector">Sector of Interest</label>
+          <select id="sector" name="sector">
+            <option value="">Select a sector (optional)</option>
+            <option>Primary Care Clinics</option>
+            <option>Urgent Care Centers</option>
+            <option>Specialist Medical Offices</option>
+            <option>Hospice &amp; Palliative Care</option>
+            <option>Outpatient Surgery Centers</option>
+            <option>Diagnostic Imaging Centers</option>
+            <option>Skilled Nursing Facilities</option>
+            <option>Senior &amp; Assisted Living</option>
+          </select>
+        </div>
+        <div class="form-row form-row-full">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Request a Consultation</button>
+        <p class="form-note" id="form-note" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-col footer-brand">
+      <a href="#top" class="logo logo-footer">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 21s-7.5-4.6-10-9.3C.5 8.1 2.3 4 6.2 4c2.1 0 3.7 1.2 4.8 2.8C12.1 5.2 13.7 4 15.8 4c3.9 0 5.7 4.1 4.2 7.7C19.5 16.4 12 21 12 21z" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M8 12h2.2l1.1-2.4 1.6 4.8 1-2.4H16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>x<em>Health</em> Capital</span>
+      </a>
+      <p>Healthcare-only EB-5 regional center and investment fund manager.</p>
+    </div>
+
+    <nav class="footer-col" aria-label="Healthcare sectors">
+      <h4>Healthcare Sectors</h4>
+      <ul>
+        <li><a href="#sectors">Primary Care Clinics</a></li>
+        <li><a href="#sectors">Urgent Care Centers</a></li>
+        <li><a href="#sectors">Specialist Medical Offices</a></li>
+        <li><a href="#sectors">Hospice &amp; Palliative Care</a></li>
+        <li><a href="#sectors">Outpatient Surgery Centers</a></li>
+        <li><a href="#sectors">Diagnostic Imaging Centers</a></li>
+        <li><a href="#sectors">Skilled Nursing Facilities</a></li>
+        <li><a href="#sectors">Senior &amp; Assisted Living</a></li>
       </ul>
-      <div class="hero-card-cta">
-        <span>EB-5 &amp; private capital available</span>
-        <a href="#criteria">See criteria →</a>
-      </div>
+    </nav>
+
+    <nav class="footer-col" aria-label="Company">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#why-eb5">Why EB-5</a></li>
+        <li><a href="#projects">Current Projects</a></li>
+        <li><a href="#process">Investment Process</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <h4>Disclosures</h4>
+      <p class="footer-fine">Offerings under Rule 506(c) of Regulation D are available only to accredited investors. Nothing on this site is an offer to sell securities. Any offer is made only through a formal, privately distributed offering memorandum. Investing involves risk, including loss of principal. Past performance does not guarantee future results.</p>
     </div>
   </div>
-</section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="container trust-bar-inner">
-    <span class="trust-label">Focus areas</span>
-    <div class="trust-items">
-      <span class="trust-item">Outpatient Care</span>
-      <span class="trust-item">MSO Structures</span>
-      <span class="trust-item">EB-5 Eligible Projects</span>
-      <span class="trust-item">De Novo &amp; Acquisitions</span>
-      <span class="trust-item">Multi-Site Platforms</span>
-    </div>
-  </div>
-</div>
-
-<!-- WHAT WE FUND -->
-<section class="fund-section" id="fund">
-  <div class="container">
-    <div class="section-header centered">
-      <div class="kicker">What We Fund</div>
-      <h2 class="section-heading">Healthcare businesses that serve real communities</h2>
-      <p class="section-sub">
-        We focus on outpatient, clinic-based, and healthcare-adjacent businesses where operational support
-        makes a meaningful difference.
-      </p>
-    </div>
-
-    <div class="fund-grid">
-      <div class="fund-card">
-        <div class="fund-icon">🏥</div>
-        <h3>Urgent Care Centers</h3>
-        <p>Walk-in clinics delivering same-day care. High patient volume, predictable revenue, and strong community need.</p>
-      </div>
-
-      <div class="fund-card">
-        <div class="fund-icon">🩺</div>
-        <h3>Primary Care Clinics</h3>
-        <p>Family medicine and concierge models built for long-term patient relationships and preventive care.</p>
-      </div>
-
-      <div class="fund-card">
-        <div class="fund-icon">🔬</div>
-        <h3>Radiology &amp; Imaging</h3>
-        <p>Outpatient diagnostic imaging supporting referring providers. Strong referral-driven revenue models.</p>
-      </div>
-
-      <div class="fund-card">
-        <div class="fund-icon">⚕️</div>
-        <h3>Ambulatory Surgery Centers</h3>
-        <p>Outpatient surgical facilities for specialty procedures — efficient, cost-effective alternatives to hospitals.</p>
-      </div>
-
-      <div class="fund-card">
-        <div class="fund-icon">✨</div>
-        <h3>Med Spa &amp; Wellness</h3>
-        <p>Aesthetic, longevity, and preventive wellness businesses serving growing consumer healthcare demand.</p>
-      </div>
-
-      <div class="fund-card">
-        <div class="fund-icon">🦵</div>
-        <h3>Physical Therapy Clinics</h3>
-        <p>Rehab-focused practices with strong payer relationships and measurable patient outcome tracking.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY X HEALTH -->
-<section id="why">
-  <div class="container">
-    <div class="why-grid">
-      <div class="why-copy">
-        <div class="kicker">Why X Health Capital</div>
-        <h2 class="section-heading">We're operators first, investors second</h2>
-        <p class="section-sub">
-          Most capital sources don't understand the day-to-day reality of running a clinic. We do.
-          Our team has direct experience in healthcare operations, provider management, payer contracting,
-          and multi-site scaling.
-        </p>
-        <a class="btn btn-primary" href="https://scheduler.zoom.us/harpran-deol" target="_blank" rel="noopener">Talk to Our Team</a>
-
-        <div class="stat-row">
-          <div class="stat-box">
-            <div class="num">10+</div>
-            <div class="stat-label">Healthcare project types supported</div>
-          </div>
-          <div class="stat-box">
-            <div class="num">EB-5</div>
-            <div class="stat-label">Investor capital available</div>
-          </div>
-          <div class="stat-box">
-            <div class="num">U.S.</div>
-            <div class="stat-label">Based, healthcare focused</div>
-          </div>
-          <div class="stat-box">
-            <div class="num">Jobs</div>
-            <div class="stat-label">Creation built into deal structure</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="why-points">
-        <div class="why-point">
-          <div class="why-point-icon">01</div>
-          <div>
-            <h3>Aligned Capital Structure</h3>
-            <p>We co-design your capital plan, operating milestones, and exit path so investors and founders stay aligned from day one.</p>
-          </div>
-        </div>
-        <div class="why-point">
-          <div class="why-point-icon">02</div>
-          <div>
-            <h3>Streamlined Diligence</h3>
-            <p>From de novo launches to practice acquisitions, we move quickly on deal evaluation and avoid unnecessary complexity.</p>
-          </div>
-        </div>
-        <div class="why-point">
-          <div class="why-point-icon">03</div>
-          <div>
-            <h3>Operational Support</h3>
-            <p>Staffing strategy, payer contracting, KPI frameworks, and board prep — we stay close after capital is deployed.</p>
-          </div>
-        </div>
-        <div class="why-point">
-          <div class="why-point-icon">04</div>
-          <div>
-            <h3>EB-5 Capital Access</h3>
-            <p>Qualified healthcare projects may access EB-5 investment — structured to meet job creation and USCIS requirements.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CRITERIA -->
-<section class="criteria-section" id="criteria">
-  <div class="container">
-    <div class="section-header">
-      <div class="kicker">Investment Criteria</div>
-      <h2 class="section-heading">What we look for in a healthcare project</h2>
-      <p class="section-sub">
-        We're selective and move fast when the right project comes along. Here's what we focus on.
-      </p>
-    </div>
-
-    <div class="criteria-grid">
-      <div class="criteria-card">
-        <div class="criteria-check">✓</div>
-        <h3>Outpatient or Clinic-Based Model</h3>
-        <p>We focus on outpatient healthcare — urgent care, primary care, imaging, ASC, therapy, and wellness. Hospital or inpatient models are outside our scope.</p>
-      </div>
-
-      <div class="criteria-card">
-        <div class="criteria-check">✓</div>
-        <h3>Experienced Operator or Clinical Partner</h3>
-        <p>We invest alongside founders who have hands-on clinical, operational, or healthcare business experience. Credential matters.</p>
-      </div>
-
-      <div class="criteria-card">
-        <div class="criteria-check">✓</div>
-        <h3>Clear Revenue Model</h3>
-        <p>Insurance reimbursement, membership, cash-pay, or hybrid — we need to understand the payer mix and revenue logic before moving forward.</p>
-      </div>
-
-      <div class="criteria-card">
-        <div class="criteria-check">✓</div>
-        <h3>U.S.-Based Operations</h3>
-        <p>All projects must be based in the United States. EB-5 eligible projects must meet USCIS job creation requirements.</p>
-      </div>
-
-      <div class="criteria-card">
-        <div class="criteria-check">✓</div>
-        <h3>De Novo or Acquisition</h3>
-        <p>We fund both new clinic launches and acquisitions of existing healthcare businesses — including multi-site platform builds.</p>
-      </div>
-
-      <div class="criteria-card">
-        <div class="criteria-check">✓</div>
-        <h3>Capital Use Transparency</h3>
-        <p>We expect founders to show how capital is deployed — equipment, buildout, staffing, working capital — with clear timelines and milestones.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section class="process-section" id="process">
-  <div class="container">
-    <div class="section-header centered">
-      <div class="kicker">How It Works</div>
-      <h2 class="section-heading">From first conversation to funded project</h2>
-      <p class="section-sub">A clear, founder-friendly process designed to move quickly without skipping the important steps.</p>
-    </div>
-
-    <div class="process-steps">
-      <div class="process-step">
-        <div class="step-num">Step 01</div>
-        <h3>Book a Call</h3>
-        <p>Schedule a free 30-minute consultation. We'll ask about your project, stage, capital need, and timeline.</p>
-      </div>
-
-      <div class="process-step">
-        <div class="step-num">Step 02</div>
-        <h3>Project Review</h3>
-        <p>Submit a project summary and financials. We review within 5–7 business days and provide initial feedback.</p>
-      </div>
-
-      <div class="process-step">
-        <div class="step-num">Step 03</div>
-        <h3>Structure &amp; Terms</h3>
-        <p>We co-design the capital structure, milestones, and terms. EB-5 documentation is coordinated with your immigration counsel.</p>
-      </div>
-
-      <div class="process-step">
-        <div class="step-num">Step 04</div>
-        <h3>Capital &amp; Launch</h3>
-        <p>Close on capital, begin operations, and stay connected through regular reporting and operational support.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-box">
-      <h2>Ready to discuss your healthcare project?</h2>
-      <p>
-        Book a free 30-minute call with our team to talk through your project, capital needs,
-        and whether X Health Capital is the right fit.
-      </p>
-      <div class="cta-actions">
-        <a class="btn btn-white" href="https://scheduler.zoom.us/harpran-deol" target="_blank" rel="noopener">Book a Free Consultation</a>
-        <a class="btn btn-teal-outline" href="mailto:info@xhealthcapital.com">Email Our Team</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">X Health<em> Capital</em></div>
-        <p>Capital and operational support for healthcare founders building outpatient businesses across the U.S.</p>
-      </div>
-
-      <div>
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="#fund">What We Fund</a></li>
-          <li><a href="#why">Why X Health</a></li>
-          <li><a href="#criteria">Criteria</a></li>
-          <li><a href="#process">Process</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="https://scheduler.zoom.us/harpran-deol" target="_blank" rel="noopener">Book a Call</a></li>
-          <li><a href="mailto:info@xhealthcapital.com">info@xhealthcapital.com</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      This website is for informational purposes only and does not constitute legal, immigration, tax, or investment advice.
-      EB-5 investments involve risk and immigration outcomes are not guaranteed. Project examples shown are illustrative only
-      and may not represent currently available offerings. Consult qualified legal and financial professionals before making
-      any investment decision.
-    </div>
+  <div class="container footer-bottom">
+    <p>&copy; <span id="year"></span> xHealth Capital, LLC. All Rights Reserved.</p>
+    <p><sup>1</sup> Reflects approval history of adjudicated projects sponsored to date; not a guarantee of future results.</p>
   </div>
 </footer>
 
+<script src="js/script.js"></script>
 </body>
 </html>
-
 
