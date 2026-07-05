@@ -1,62 +1,66 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---------- Mobile nav toggle ---------- */
+  // Footer year
+  document.querySelectorAll('#year').forEach(function (el) {
+    el.textContent = new Date().getFullYear();
+  });
+
+  // Mobile nav toggle
   var navToggle = document.getElementById('nav-toggle');
   var mainNav = document.getElementById('main-nav');
-
   if (navToggle && mainNav) {
     navToggle.addEventListener('click', function () {
       var isOpen = mainNav.classList.toggle('open');
       navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
-
-    mainNav.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        mainNav.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
   }
 
-  /* ---------- FAQ accordion ---------- */
-  var accordion = document.getElementById('faq-accordion');
-  if (accordion) {
-    var triggers = accordion.querySelectorAll('.accordion-trigger');
-
-    triggers.forEach(function (trigger) {
-      var panel = trigger.nextElementSibling;
-
-      trigger.addEventListener('click', function () {
-        var isOpen = trigger.getAttribute('aria-expanded') === 'true';
-
-        // Close all others
-        triggers.forEach(function (t) {
-          if (t !== trigger) {
-            t.setAttribute('aria-expanded', 'false');
-            t.nextElementSibling.style.maxHeight = null;
-          }
-        });
-
-        trigger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-        panel.style.maxHeight = isOpen ? null : panel.scrollHeight + 'px';
+  // Dropdown menus (click-to-toggle on touch/mobile, hover handled in CSS on desktop)
+  document.querySelectorAll('.has-dropdown > .nav-link').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      var parent = btn.closest('.has-dropdown');
+      var isOpen = parent.classList.contains('open');
+      document.querySelectorAll('.has-dropdown.open').forEach(function (el) {
+        if (el !== parent) { el.classList.remove('open'); }
       });
+      parent.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
     });
-  }
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.has-dropdown')) {
+      document.querySelectorAll('.has-dropdown.open').forEach(function (el) {
+        el.classList.remove('open');
+        var b = el.querySelector('.nav-link');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
 
-  /* ---------- Contact form (front-end only demo) ---------- */
+  // FAQ / accordion
+  document.querySelectorAll('.accordion-trigger').forEach(function (trigger) {
+    var panel = trigger.nextElementSibling;
+    var expanded = trigger.getAttribute('aria-expanded') === 'true';
+    if (panel) panel.style.maxHeight = expanded ? panel.scrollHeight + 'px' : '0px';
+
+    trigger.addEventListener('click', function () {
+      var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+      panel.style.maxHeight = !isOpen ? panel.scrollHeight + 'px' : '0px';
+    });
+  });
+
+  // Contact form (static site — replace with real submission endpoint)
   var form = document.getElementById('contact-form');
-  var note = document.getElementById('form-note');
-
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      note.textContent = 'Thank you — your request has been received. Our team will reach out within one business day.';
+      var note = document.getElementById('form-note');
+      if (note) {
+        note.textContent = 'Thank you. A member of our investor relations team will reach out within one business day.';
+      }
       form.reset();
     });
   }
-
-  /* ---------- Footer year ---------- */
-  var yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 });
